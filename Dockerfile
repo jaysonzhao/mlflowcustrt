@@ -1,14 +1,13 @@
 # TODO: choose appropriate base image, install Python, MLServer, and
 # dependencies of your MLModel implementation
-FROM python:3.8-slim-buster
+FROM registry.redhat.io/ubi8/python-38:latest
 RUN pip install mlserver
 # ...
 
 # The custom `MLModel` implementation should be on the Python search path
 # instead of relying on the working directory of the image. If using a
 # single-file module, this can be accomplished with:
-COPY --chown=${USER} ./custom_model.py /opt/custom_model.py
-ENV PYTHONPATH=/opt/
+COPY custom_model.py ./custom_model.py
 
 # The environment variables here are for compatibility with ModelMesh Serving.
 # These can also be set in the ServingRuntime, but this is recommended for
