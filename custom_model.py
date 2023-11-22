@@ -4,10 +4,11 @@ from mlserver.utils import get_model_uri
 
 class CustomMLModel(MLModel):
   async def load(self) -> bool:
-    model_uri = await get_model_uri(self._settings)
-    self._load_model_from_file(model_uri)
-    self.ready = True
-    return self.ready
+    #model_uri = await get_model_uri(self._settings)
+    #self._load_model_from_file(model_uri)
+    #self.ready = True
+    print("in loading overrided")
+    return True
 
   async def predict(self, payload: types.InferenceRequest) -> types.InferenceResponse:
 
